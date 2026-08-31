@@ -1,270 +1,52 @@
 <!doctype html>
 <html lang="zh-CN">
 <head>
-  <meta charset="utf-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1">
-  <meta name="description" content="cainiguai 的个人主页：产业经济学、数据分析与互联网运营实践。">
-  <meta name="theme-color" content="#11130f">
-  <meta property="og:title" content="cainiguai · 经济分析与互联网运营">
-  <meta property="og:description" content="产业经济学背景，数据驱动的互联网运营实践。">
-  <meta property="og:type" content="website">
-  <meta property="og:url" content="https://cainiguai.github.io/">
-  <title>cainiguai · 经济分析与互联网运营</title>
-  <style>
-    :root {
-      --paper: #f3f0e7;
-      --ink: #11130f;
-      --muted: #66695f;
-      --card: #fbfaf5;
-      --line: #d7d3c5;
-      --lime: #c8ff5a;
-      --orange: #ff754b;
-      --max: 1140px;
-    }
-    * { box-sizing: border-box; }
-    html { scroll-behavior: smooth; }
-    body {
-      margin: 0;
-      color: var(--ink);
-      font-family: Inter, ui-sans-serif, system-ui, -apple-system, "Segoe UI", "PingFang SC", "Microsoft YaHei", sans-serif;
-      background: linear-gradient(rgba(17,19,15,.035) 1px, transparent 1px), linear-gradient(90deg, rgba(17,19,15,.035) 1px, transparent 1px), var(--paper);
-      background-size: 32px 32px;
-    }
-    a { color: inherit; }
-    .skip-link { position: absolute; left: -999px; }
-    .skip-link:focus { left: 16px; top: 16px; z-index: 30; padding: 10px 14px; background: var(--lime); }
-    .shell { width: min(var(--max), calc(100% - 40px)); margin: 0 auto; }
-    header { position: sticky; top: 0; z-index: 20; border-bottom: 1px solid rgba(17,19,15,.13); background: rgba(243,240,231,.9); backdrop-filter: blur(14px); }
-    nav { min-height: 68px; display: flex; align-items: center; justify-content: space-between; gap: 24px; }
-    .brand { font-weight: 900; letter-spacing: -.03em; text-decoration: none; }
-    .nav-links { display: flex; flex-wrap: wrap; justify-content: flex-end; gap: 18px; }
-    .nav-links a { color: var(--muted); font-size: 13px; font-weight: 750; text-decoration: none; }
-    .nav-links a:hover, .nav-links a:focus-visible { color: var(--ink); }
-    .hero { min-height: calc(92vh - 68px); display: grid; align-items: center; padding: 76px 0; }
-    .hero-grid { display: grid; grid-template-columns: 1.5fr .5fr; gap: 62px; align-items: end; }
-    .eyebrow { display: inline-flex; align-items: center; gap: 9px; margin: 0 0 22px; font-size: 13px; font-weight: 850; letter-spacing: .12em; text-transform: uppercase; }
-    .dot { width: 10px; height: 10px; border-radius: 50%; background: var(--orange); box-shadow: 0 0 0 5px rgba(255,117,75,.16); }
-    h1 { max-width: 920px; margin: 0; font-size: clamp(54px, 9vw, 122px); line-height: .9; letter-spacing: -.075em; }
-    h1 span { display: inline-block; position: relative; z-index: 0; }
-    h1 span::after { content: ""; position: absolute; left: -.03em; right: -.03em; bottom: .02em; height: .23em; z-index: -1; background: var(--lime); transform: rotate(-1.4deg); }
-    .lede { max-width: 760px; margin: 34px 0 0; color: var(--muted); font-size: clamp(19px, 2.2vw, 27px); line-height: 1.6; }
-    .hero-note { padding: 24px; border: 1px solid var(--ink); background: var(--card); box-shadow: 8px 8px 0 var(--ink); }
-    .hero-note strong { display: block; margin-bottom: 10px; }
-    .hero-note p { margin: 0; color: var(--muted); line-height: 1.7; }
-    section { padding: 104px 0; border-top: 1px solid var(--line); scroll-margin-top: 68px; }
-    .section-head { display: grid; grid-template-columns: 190px 1fr; gap: 40px; margin-bottom: 46px; }
-    .kicker { margin: 5px 0 0; color: var(--muted); font-size: 13px; font-weight: 850; letter-spacing: .14em; text-transform: uppercase; }
-    h2 { margin: 0; max-width: 820px; font-size: clamp(38px, 5.4vw, 70px); line-height: 1.03; letter-spacing: -.055em; }
-    h3 { letter-spacing: -.025em; }
-    .grid-2 { display: grid; grid-template-columns: repeat(2, 1fr); gap: 22px; }
-    .card { padding: 34px; border: 1px solid var(--line); background: rgba(251,250,245,.84); }
-    .card h3 { margin: 0 0 8px; font-size: 26px; }
-    .card .sub { margin: 0 0 18px; color: var(--orange); font-weight: 800; }
-    .card p { margin: 0 0 16px; color: var(--muted); line-height: 1.75; }
-    .card p:last-child { margin-bottom: 0; }
-    .course-list { margin: 18px 0 0; padding: 18px 0 0; border-top: 1px solid var(--line); color: var(--muted); line-height: 1.75; }
-    .course-list strong { color: var(--ink); }
-    .award-board { display: grid; grid-template-columns: repeat(2, 1fr); gap: 1px; border: 1px solid var(--ink); background: var(--ink); }
-    .award-group { padding: 34px; background: var(--card); }
-    .award-group h3 { margin: 0 0 22px; font-size: 25px; }
-    .award-list { margin: 0; padding: 0; list-style: none; }
-    .award-list li { display: grid; grid-template-columns: 88px 1fr; gap: 14px; padding: 14px 0; border-bottom: 1px solid var(--line); line-height: 1.55; }
-    .award-list li:last-child { border-bottom: 0; }
-    .award-list time { color: var(--muted); font-size: 13px; font-weight: 750; }
-    .skill-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 18px; }
-    .skill { min-height: 190px; padding: 28px; border: 1px solid var(--ink); background: var(--card); }
-    .skill b { display: block; margin-bottom: 14px; font-size: 22px; }
-    .skill p { margin: 0; color: var(--muted); line-height: 1.75; }
-    .timeline { border-top: 1px solid var(--ink); }
-    .role { display: grid; grid-template-columns: 190px 1fr; gap: 40px; padding: 42px 0; border-bottom: 1px solid var(--line); }
-    .role time { color: var(--muted); font-size: 14px; font-weight: 750; }
-    .role h3 { margin: 0; font-size: clamp(25px, 3vw, 36px); }
-    .role .meta { margin: 7px 0 14px; color: var(--orange); font-weight: 850; }
-    .keywords { display: flex; flex-wrap: wrap; gap: 8px; margin: 0 0 24px; padding: 0; list-style: none; }
-    .keywords li { padding: 7px 11px; border: 1px solid var(--ink); border-radius: 999px; background: var(--lime); font-size: 12px; font-weight: 800; }
-    .detail-list { display: grid; gap: 17px; margin: 0; padding: 0; list-style: none; counter-reset: detail; }
-    .detail-list li { position: relative; padding-left: 44px; color: var(--muted); font-size: 16px; line-height: 1.75; counter-increment: detail; }
-    .detail-list li::before { content: counter(detail, decimal-leading-zero); position: absolute; left: 0; top: 2px; color: var(--ink); font-size: 12px; font-weight: 900; letter-spacing: .06em; }
-    .detail-list strong { color: var(--ink); }
-    .project { display: grid; grid-template-columns: .9fr 1.1fr; gap: 1px; border: 1px solid var(--ink); background: var(--ink); }
-    .project > div { padding: clamp(30px, 5vw, 58px); background: var(--card); }
-    .project h3 { margin: 0 0 18px; font-size: clamp(31px, 4vw, 52px); line-height: 1.08; }
-    .project p { margin: 0 0 20px; color: var(--muted); line-height: 1.8; }
-    .project p:last-child { margin-bottom: 0; }
-    .campus-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 22px; }
-    .campus-card { padding: 34px; border: 1px solid var(--ink); background: var(--card); }
-    .campus-card h3 { margin: 0; font-size: 27px; }
-    .campus-card .meta { margin: 8px 0 22px; color: var(--orange); font-weight: 800; }
-    footer { padding: 72px 0; color: #f5f2e9; background: var(--ink); }
-    .footer-grid { display: flex; align-items: end; justify-content: space-between; gap: 28px; }
-    footer h2 { max-width: 650px; }
-    footer a { display: inline-flex; padding: 13px 17px; border: 1px solid #f5f2e9; color: #f5f2e9; font-weight: 800; text-decoration: none; }
-    footer a:hover, footer a:focus-visible { color: var(--ink); background: var(--lime); }
-    @media (max-width: 860px) {
-      .hero-grid, .section-head, .role, .project, .grid-2, .award-board, .campus-grid { grid-template-columns: 1fr; }
-      .hero-grid { gap: 42px; }
-      .section-head, .role { gap: 14px; }
-      .skill-grid { grid-template-columns: 1fr 1fr; }
-      .footer-grid { align-items: flex-start; flex-direction: column; }
-    }
-    @media (max-width: 620px) {
-      .shell { width: min(100% - 28px, var(--max)); }
-      .nav-links a:not(:last-child) { display: none; }
-      .hero { padding: 58px 0 76px; }
-      section { padding: 76px 0; }
-      .skill-grid { grid-template-columns: 1fr; }
-      .card, .award-group, .skill, .campus-card { padding: 25px; }
-      .award-list li { grid-template-columns: 76px 1fr; }
-    }
-    @media (prefers-reduced-motion: reduce) { html { scroll-behavior: auto; } }
-  </style>
-</head>
-<body>
-  <a class="skip-link" href="#main">跳到主要内容</a>
-  <header>
-    <nav class="shell" aria-label="主导航">
-      <a class="brand" href="#top">cainiguai.</a>
-      <div class="nav-links">
-        <a href="#education">教育</a><a href="#awards">荣誉</a><a href="#skills">能力</a><a href="#experience">实习</a><a href="#project">项目</a><a href="#campus">校园</a>
-      </div>
-    </nav>
-  </header>
-  <main id="main">
-    <section class="hero" id="top">
-      <div class="shell hero-grid">
-        <div>
-          <p class="eyebrow"><span class="dot" aria-hidden="true"></span> Economics × Data × Growth</p>
-          <h1>用数据理解问题，<span>用运营推动增长。</span></h1>
-          <p class="lede">你好，我是 cainiguai，一名产业经济学硕士研究生，也是一名关注用户需求、经营分析与业务增长的互联网运营实践者。</p>
-        </div>
-        <aside class="hero-note"><strong>个人关键词</strong><p>数据分析 · 用户洞察 · 渠道增长<br>项目统筹 · AI 提效 · 持续学习</p></aside>
-      </div>
-    </section>
+<meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="description" content="周碧漪的个人主页：产业研究、经营分析与项目协同。"><meta name="theme-color" content="#17324d">
+<meta property="og:title" content="周碧漪 · 个人主页"><meta property="og:description" content="产业研究 · 经营分析 · 项目协同"><meta property="og:type" content="website">
+<title>周碧漪 · 个人主页</title>
+<style>
+:root{--ivory:#f7f5ef;--paper:#fffefa;--navy:#17324d;--text:#263540;--muted:#687781;--gold:#876321;--highlight:#efd277;--soft:#f8edbd;--line:#d9ddd9;--max:1120px}*{box-sizing:border-box}html{scroll-behavior:smooth}body{margin:0;color:var(--text);font-family:Inter,ui-sans-serif,system-ui,-apple-system,"Segoe UI","PingFang SC","Microsoft YaHei",sans-serif;background:var(--ivory);-webkit-font-smoothing:antialiased}a{color:inherit}.shell{width:min(var(--max),calc(100% - 48px));margin:auto}.skip{position:fixed;left:16px;top:-80px;z-index:99;padding:10px 14px;color:white;background:var(--navy)}.skip:focus{top:16px}header{position:sticky;top:0;z-index:20;border-bottom:1px solid #17324d19;background:#f7f5eff2;backdrop-filter:blur(12px)}nav{min-height:60px;display:flex;align-items:center;justify-content:space-between;gap:24px}.brand{color:var(--navy);font-weight:800;letter-spacing:.08em;text-decoration:none}.nav-links{display:flex;flex-wrap:wrap;justify-content:flex-end;gap:21px}.nav-links a{color:var(--muted);font-size:13px;font-weight:700;text-decoration:none}.nav-links a:hover,.nav-links a:focus-visible{color:var(--gold)}a:focus-visible{outline:2px solid var(--gold);outline-offset:4px}main>section{padding:74px 0;border-top:1px solid var(--line);scroll-margin-top:60px}
+.hero{position:relative;min-height:600px;display:grid;align-items:center;overflow:hidden;border:0;background:radial-gradient(circle at 82% 18%,#e8c58157 0,#f5e5c12e 18%,transparent 42%),linear-gradient(145deg,#fbfaf6,#f4f2eb 58%,#e8eef0)}.hero:after{content:"";position:absolute;inset:auto 0 0;height:25%;opacity:.4;background:linear-gradient(176deg,transparent 49%,#4f798e1f 50%,#3f698010 71%,transparent 72%)}.hero-grid{position:relative;z-index:1;display:grid;grid-template-columns:1.45fr .55fr;gap:60px;align-items:end}.eyebrow,.kicker{color:var(--gold);font-size:12px;font-weight:800;letter-spacing:.17em;text-transform:uppercase}.eyebrow{margin:0 0 20px}h1{margin:0;color:var(--navy);font-size:clamp(52px,7vw,78px);line-height:1;letter-spacing:-.055em}.positioning{margin:18px 0 0;color:#274963;font-size:clamp(18px,2.2vw,25px);font-weight:700;letter-spacing:.09em}.lede{max-width:720px;margin:22px 0 0;color:#51616d;font-size:16px;line-height:1.82}.personal-keywords{margin-top:20px;padding-top:16px;border-top:1px solid #17324d26}.personal-keywords b{display:block;margin-bottom:10px;color:var(--navy);font-size:13px}.actions{display:flex;flex-wrap:wrap;gap:12px;margin-top:24px}.button{display:inline-flex;align-items:center;min-height:42px;padding:0 16px;border:1px solid var(--navy);color:var(--navy);font-size:14px;font-weight:750;text-decoration:none}.button.primary,.button:hover{color:white;background:var(--navy)}.summary{padding:22px 0 2px 24px;border-left:1px solid #17324d3d}.summary p{margin:0 0 16px;color:var(--muted);font-size:13px;line-height:1.55}.summary strong{display:block;margin-bottom:2px;color:var(--navy);font-family:Georgia,serif;font-size:29px;font-weight:500}
+.section-head{display:grid;grid-template-columns:150px 1fr;gap:32px;margin-bottom:32px}.kicker{margin:6px 0 0}h2{margin:0;color:var(--navy);font-size:clamp(34px,4.4vw,51px);line-height:1.12;letter-spacing:-.045em}h3{color:var(--navy);letter-spacing:-.02em}.grid-2,.project-grid,.leadership-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:18px}.card,.project-card,.leadership-card{padding:28px;border:1px solid var(--line);background:#fffefae6}.card h3,.leadership-card h3{margin:0 0 8px;font-size:25px}.meta{margin:0 0 16px;color:var(--gold);font-size:15px;font-weight:800}.card p{margin:0 0 12px;color:var(--muted);line-height:1.72}.card strong,.detail-list strong{color:var(--text)}.research{padding-top:14px;border-top:1px solid var(--line)}
+.award-board{display:grid;grid-template-columns:1.15fr .85fr;gap:18px;align-items:start}.award-group{padding:28px;border:1px solid var(--navy);background:var(--paper)}.award-group h3{margin:0 0 16px;font-size:25px}.award-list{margin:0;padding:0;list-style:none}.award-list li{display:grid;grid-template-columns:78px 1fr;gap:14px;padding:13px 0;border-bottom:1px solid var(--line);line-height:1.5}.award-list li:last-child{border-bottom:0}.award-list time{color:var(--gold);font-size:13px;font-weight:800}
+.skill-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:14px}.skill{padding:23px;border:1px solid var(--line);border-top:4px solid var(--navy);background:var(--paper)}.skill small{display:block;margin-bottom:12px;color:var(--gold);font-family:Georgia,serif;font-weight:700}.skill h3{margin:0 0 10px;font-size:22px}.skill p{margin:0;color:var(--muted);font-size:14px;line-height:1.68}
+.timeline{border-top:1px solid var(--navy)}.role{display:grid;grid-template-columns:150px 1fr;gap:32px;padding:31px 0;border-bottom:1px solid var(--line)}.role time{padding-top:5px;color:#536571;font-size:15px;font-weight:800;letter-spacing:.02em}.role h3{margin:0;font-size:clamp(25px,3vw,34px)}.role .meta{margin:6px 0 14px;font-size:16px}.keywords{display:flex;flex-wrap:wrap;gap:8px;margin:0 0 18px;padding:0;list-style:none}.keywords li{padding:6px 12px;color:var(--navy);border:1px solid var(--navy);border-radius:99px;background:var(--highlight);font-size:12px;font-weight:800}.personal-keywords .keywords{margin-bottom:0}.personal-keywords .keywords li{background:var(--soft)}.detail-list{display:grid;gap:11px;margin:0;padding:0;list-style:none}.detail-list li{position:relative;padding-left:18px;color:var(--muted);font-size:15px;line-height:1.72}.detail-list li:before{content:"";position:absolute;left:0;top:.76em;width:5px;height:5px;border-radius:50%;background:var(--gold)}
+.project-card{display:flex;flex-direction:column}.project-card>small,.project-intro>small{color:var(--gold);font-family:Georgia,serif;font-weight:700}.project-card h3,.project-intro h3{margin:17px 0 10px;font-size:clamp(24px,3vw,31px);line-height:1.24}.project-card>p,.project-intro>p{margin:0 0 15px;color:var(--muted);line-height:1.7}.project-card .detail-list{margin-top:4px}.project-card.featured{grid-column:1/-1;display:grid;grid-template-columns:.85fr 1.15fr;gap:32px;border-color:var(--navy);border-top:4px solid var(--navy)}.project-card.featured .keywords{margin-bottom:0}.leadership-card{border-top:4px solid var(--gold)}.leadership-card .meta{margin-top:6px}footer{padding:54px 0;color:#f8f5ed;background:var(--navy)}.footer-grid{display:flex;align-items:center;justify-content:space-between;gap:28px}footer h2{color:white}.footer-links{display:flex;flex-wrap:wrap;gap:12px 22px}.footer-links a{font-size:14px;text-underline-offset:5px}
+@media(max-width:860px){.hero{min-height:570px}.hero-grid,.section-head,.role,.project-card.featured{grid-template-columns:1fr}.hero-grid{gap:32px}.summary{display:grid;grid-template-columns:repeat(3,1fr);gap:16px;padding:18px 0 0;border:0;border-top:1px solid #17324d3d}.section-head,.role{gap:11px}.skill-grid{grid-template-columns:repeat(2,1fr)}.award-board{grid-template-columns:1fr}.project-card.featured{gap:18px}}@media(max-width:640px){.shell{width:calc(100% - 30px)}nav{min-height:58px}.brand{flex:0 0 auto}.nav-links{flex-wrap:nowrap;justify-content:flex-start;gap:16px;overflow-x:auto;white-space:nowrap;scrollbar-width:none}.nav-links::-webkit-scrollbar{display:none}main>section{padding:56px 0}.hero{min-height:auto;padding:62px 0 58px}h1{font-size:48px}.positioning{font-size:17px;line-height:1.7}.lede{font-size:15px}.summary{grid-template-columns:repeat(2,1fr);gap:12px}.summary p{font-size:12px}.summary p:last-child{grid-column:1/-1}.summary strong{font-size:24px}.grid-2,.skill-grid,.project-grid,.leadership-grid{grid-template-columns:1fr}.card,.project-card,.leadership-card,.award-group{padding:23px}.award-list li{grid-template-columns:70px 1fr}.footer-grid{align-items:flex-start;flex-direction:column}}@media(prefers-reduced-motion:reduce){html{scroll-behavior:auto}}
+</style></head>
+<body><a class="skip" href="#main">跳到主要内容</a>
+<header><nav class="shell" aria-label="主导航"><a class="brand" href="#top">周碧漪</a><div class="nav-links"><a href="#education">教育</a><a href="#awards">荣誉</a><a href="#skills">能力</a><a href="#experience">实习</a><a href="#projects">项目</a><a href="#leadership">校园</a></div></nav></header>
+<main id="main">
+<section class="hero" id="top"><div class="shell hero-grid"><div><p class="eyebrow">Industrial Economics · Business Analysis</p><h1>周碧漪</h1><p class="positioning">产业研究 · 经营分析 · 项目协同</p><p class="lede">产业经济学硕士研究生，关注真实业务中的数据、用户与组织协作。拥有互联网平台、科技企业、软件服务与政务研究实践，善于从复杂信息中识别问题，用分析形成判断，并推动方案落地。</p><div class="personal-keywords"><b>个人关键词</b><ul class="keywords"><li>数据分析</li><li>用户洞察</li><li>经营增长</li><li>产业研究</li><li>项目统筹</li><li>AI 提效</li></ul></div><div class="actions"><a class="button primary" href="mailto:15990274205@163.com">邮件联系</a><a class="button" href="#experience">查看经历</a></div></div><aside class="summary"><p><strong>Top 5%</strong>硕士阶段专业排名</p><p><strong>5 段</strong>跨行业实践经历</p><p><strong>SCI/SSCI</strong>学术研究成果</p></aside></div></section>
 
-    <section id="education" aria-labelledby="education-title">
-      <div class="shell">
-        <div class="section-head"><p class="kicker">01 · Education</p><h2 id="education-title">教育背景与研究训练</h2></div>
-        <div class="grid-2">
-          <article class="card">
-            <h3>北京工商大学</h3><p class="sub">产业经济学 · 硕士 · 2024.09—2027.06</p>
-            <p><strong>成绩排名：</strong>前 5%</p>
-            <p><strong>研究方向：</strong>能源环境经济、财税政策、公共政策量化分析。</p>
-            <p><strong>研究课题：</strong>围绕环保税执法、纳税信用评级与高耗能企业绩效及绿色创新，使用上市公司面板数据完成数据处理、回归分析与机制检验。</p>
-            <p class="course-list"><strong>核心课程：</strong>产业结构与产业政策研究、产业组织理论、中级计量经济学、期货市场研究、规制经济学、消费经济、流通产业组织。</p>
-          </article>
-          <article class="card">
-            <h3>黑龙江大学</h3><p class="sub">经济学 · 学士 · 2020.09—2024.06</p>
-            <p><strong>成绩排名：</strong>前 5%</p>
-            <p><strong>毕业论文：</strong>研究数字经济对老年多维贫困的影响，使用 Stata 完成数据处理、回归分析与结论检验。</p>
-            <p><strong>创新研究：</strong>主持省级重点大学生创新创业训练计划“向北开放背景下黑龙江自贸区发展研究”，聚焦区域经济与贸易经济，并公开发表学术论文。</p>
-            <p class="course-list"><strong>核心课程：</strong>产业经济学、财政学、统计学、金融学、区域经济学、增长经济学、证券投资学、会计学、宏观与微观经济学。</p>
-          </article>
-        </div>
-      </div>
-    </section>
+<section id="education"><div class="shell"><div class="section-head"><p class="kicker">01 · Education</p><h2>教育背景与研究训练</h2></div><div class="grid-2">
+<article class="card"><h3>北京工商大学</h3><p class="meta">产业经济学 · 硕士 · 2024.09—2027.06 · GPA 4.22/5.0 · 前 5%</p><p><strong>研究方向：</strong>能源与环境经济、财税政策、公共政策量化分析。</p><p class="research"><strong>研究训练：</strong>聚焦新能源示范城市政策、环保税、环境规制与碳排放，使用双重差分法与 ArcGIS 开展量化分析和空间制图。</p><p><strong>研究成果：</strong>以第二作者在 SCI/SSCI 期刊 Sustainability 发表论文，并参与《中国宏观经济学》绿色转型专题初稿编撰。</p></article>
+<article class="card"><h3>黑龙江大学</h3><p class="meta">经济学 · 学士 · 2020.09—2024.06 · GPA 9.0/10.0 · 前 5%</p><p><strong>毕业论文：</strong>研究数字经济对老年多维贫困的影响，使用 Stata 完成数据处理、回归分析与稳健性检验。</p><p class="research"><strong>创新研究：</strong>主持省级重点大学生创新创业训练计划“向北开放背景下黑龙江自贸区发展研究”，聚焦区域经济与贸易发展并公开发表论文。</p><p><strong>综合表现：</strong>获推免资格；核心课程包括产业经济学、财政学、统计学、金融学、区域经济学与增长经济学。</p></article>
+</div></div></section>
 
-    <section id="awards" aria-labelledby="awards-title">
-      <div class="shell">
-        <div class="section-head"><p class="kicker">02 · Awards</p><h2 id="awards-title">荣誉与奖励</h2></div>
-        <div class="award-board">
-          <article class="award-group"><h3>省级及以上</h3><ul class="award-list">
-            <li><time>2025.06</time><span>“青振京郊”挑战杯省级二等奖</span></li>
-            <li><time>2024.06</time><span>黑龙江省优秀毕业生</span></li>
-            <li><time>2023.07</time><span>主持省级大学生创新创业训练计划</span></li>
-            <li><time>2022.12</time><span>黑龙江省“情暖童心，相伴同行”优秀志愿者</span></li>
-            <li><time>2022.06</time><span>第十三届工商银行“挑战杯”黑龙江省大学生创业计划竞赛金奖</span></li>
-            <li><time>2021.06</time><span>第十七届“挑战杯”黑龙江省大学生课外学术科技作品竞赛红色专项二等奖</span></li>
-          </ul></article>
-          <article class="award-group"><h3>校级荣誉</h3><ul class="award-list">
-            <li><time>2025.12</time><span>研究生二等奖学金、优秀学生干部</span></li>
-            <li><time>2025.12</time><span>带领研究生支部入选校级样板党支部重点建设项目</span></li>
-            <li><time>2024.12</time><span>研究生新生一等奖学金</span></li>
-            <li><time>本科阶段</time><span>连续三年校一等奖学金</span></li>
-            <li><time>本科阶段</time><span>连续三年校三好学生</span></li>
-            <li><time>本科阶段</time><span>连续三年校优秀志愿者</span></li>
-          </ul></article>
-        </div>
-      </div>
-    </section>
+<section id="awards"><div class="shell"><div class="section-head"><p class="kicker">02 · Recognition</p><h2>荣誉与奖励</h2></div><div class="award-board"><article class="award-group"><h3>省级及以上</h3><ul class="award-list"><li><time>研究生阶段</time><span>中研杯国赛一等奖</span></li><li><time>2026.06</time><span>“青智未来”挑战杯省级一等奖</span></li><li><time>2025.06</time><span>“青振京郊”挑战杯省级二等奖</span></li><li><time>2024.06</time><span>黑龙江省优秀毕业生</span></li><li><time>2023.07</time><span>主持省级重点大学生创新创业训练计划</span></li><li><time>2022.12</time><span>黑龙江省“情暖童心，相伴同行”优秀志愿者</span></li><li><time>2022.06</time><span>“挑战杯”黑龙江省大学生创业计划竞赛金奖</span></li><li><time>2021.06</time><span>“挑战杯”黑龙江省课外学术科技作品竞赛红色专项二等奖</span></li></ul></article><article class="award-group"><h3>研究成果 · 奖学金与校级荣誉</h3><ul class="award-list"><li><time>研究生阶段</time><span>以第二作者在 SCI/SSCI 期刊 Sustainability 发表论文</span></li><li><time>研究生阶段</time><span>优秀党员、优秀学生干部</span></li><li><time>2025.12</time><span>研究生二等奖学金</span></li><li><time>2025.12</time><span>带领支部入选校级样板党支部重点建设项目</span></li><li><time>2024.12</time><span>研究生新生一等奖学金</span></li><li><time>本科阶段</time><span>连续三年校一等奖学金、三好学生与优秀志愿者</span></li></ul></article></div></div></section>
 
-    <section id="skills" aria-labelledby="skills-title">
-      <div class="shell">
-        <div class="section-head"><p class="kicker">03 · Capabilities</p><h2 id="skills-title">能力与工具</h2></div>
-        <div class="skill-grid">
-          <article class="skill"><b>数据分析</b><p>SQL、Stata、Excel；指标体系搭建、转化漏斗拆解、经营监测、回归分析与机制检验。</p></article>
-          <article class="skill"><b>互联网运营</b><p>用户分层、渠道策略、选品定价、搜索优化、活动运营、内容运营与商机线索管理。</p></article>
-          <article class="skill"><b>AI 与自动化</b><p>使用 ChatGPT、Workbuddy、DeepSeek 辅助数据分析、商品筛选、信息查询和运营流程提效。</p></article>
-          <article class="skill"><b>项目协作</b><p>需求分析、跨部门沟通、项目统筹、SOP 沉淀、商务材料与招投标流程协作。</p></article>
-          <article class="skill"><b>内容与设计</b><p>微信公众号运营、Photoshop、可画、剪映；文案撰写、编辑排版与宣传物料设计。</p></article>
-          <article class="skill"><b>语言与办公</b><p>英语 CET-6（526 分）；熟练使用 Office，具备研究材料、报告与演示内容制作能力。</p></article>
-        </div>
-      </div>
-    </section>
+<section id="skills"><div class="shell"><div class="section-head"><p class="kicker">03 · Capabilities</p><h2>能力与工具</h2></div><div class="skill-grid"><article class="skill"><small>RESEARCH</small><h3>研究与分析</h3><ul class="keywords"><li>双重差分法</li><li>学术论文写作</li></ul><p>政策梳理、用户研究、回归分析、机制检验与研究报告表达。</p></article><article class="skill"><small>DATA</small><h3>数据工具</h3><ul class="keywords"><li>SQL</li><li>Stata</li><li>ArcGIS</li></ul><p>数据提取、清洗、统计分析、空间制图、可视化与经营监测。</p></article><article class="skill"><small>OPERATION</small><h3>业务运营</h3><ul class="keywords"><li>渠道策略</li><li>用户分层</li></ul><p>选品定价、搜索优化、供给运营、活动与内容运营。</p></article><article class="skill"><small>DELIVERY</small><h3>项目协同</h3><ul class="keywords"><li>项目统筹</li><li>跨部门协作</li></ul><p>需求梳理、SOP 沉淀、材料撰写、商务支持与招投标协作。</p></article><article class="skill"><small>AI &amp; CONTENT</small><h3>AI 与内容</h3><ul class="keywords"><li>AI 提效</li><li>内容传播</li></ul><p>ChatGPT、Workbuddy、DeepSeek；微信公众号、Photoshop、剪映、可画。</p></article><article class="skill"><small>LANGUAGE</small><h3>语言与办公</h3><ul class="keywords"><li>CET-6 526</li><li>Office</li></ul><p>具备英文文献阅读与日常交流能力，熟练制作研究报告和演示文稿。</p></article></div></div></section>
 
-    <section id="experience" aria-labelledby="experience-title">
-      <div class="shell">
-        <div class="section-head"><p class="kicker">04 · Experience</p><h2 id="experience-title">实习经历</h2></div>
-        <div class="timeline">
-          <article class="role"><time>2025.12—2026.03</time><div><h3>京东 · 家具建材采销部</h3><p class="meta">电商运营</p><ul class="keywords"><li>搜索增长</li><li>交易增长</li><li>经营分析</li><li>AI 提效</li></ul><ol class="detail-list">
-            <li><strong>搜索增长：</strong>负责搜索渠道流量运营，协助搭建头部商品监测及商品信息质量（SEO）优化体系；基于曝光表现筛选核心商品池，日度监测排名异动，结合 CTR、CVR 及广告数据优化流量策略，推动搜索曝光提升 10%、转化率提升 6%。</li>
-            <li><strong>交易增长：</strong>主导“顺手买”渠道运营，基于商品价差与关联购买行为建立选品、定价与活动提报 SOP；通过价格带、品类及商品组合测试确定高转化方案，推动日订单量由 2,000+ 提升至稳定 5,000+，实现渠道盈亏转正，并联动促销资源打造 2 款渠道头部商品。</li>
-            <li><strong>策略提效：</strong>引入 AI 及自动化工具优化商品筛选和监测流程，运营效率提升 70%；搭建 GMV、订单量和转化率等指标监测机制，通过类目及渠道对比、转化漏斗分析定位问题，动态优化会场商品和广告投放结构，并协同采销及广告团队打造 3 款爆品。</li>
-          </ol></div></article>
-          <article class="role"><time>2025.08—2025.12</time><div><h3>美团 · 酒旅团购直播产品组</h3><p class="meta">渠道运营</p><ul class="keywords"><li>工具迭代</li><li>渠道增长</li><li>SQL</li><li>供给运营</li></ul><ol class="detail-list">
-            <li><strong>工具迭代：</strong>基于内部选品及推品流程体验梳理运营痛点并推动产品化工具迭代；整合运营看板资源，编写 SQL 脚本实现货品信息一键查询，并运用 AI 工具沉淀可复用指令集，推动推品效率提升 50%。</li>
-            <li><strong>渠道增长：</strong>面向全渠道推品需求，负责酒店团购产品供给对接及资源池建设，协同采购 BD 维护优质供给池；分析渠道用户画像，制定差异化推品策略并建立推品地图 SOP，为高价值渠道匹配高客单价酒店产品、为价格敏感渠道配置通兑套餐，推动重点产品销量同比提升 30% 以上。</li>
-            <li><strong>数据分析：</strong>使用 SQL 监测供给在线率、支付 GMV、支付转化率及核销率等核心指标；针对销量下滑、核销率偏低等异动开展专项拆解，通过同城同商圈横向比较和“下单—支付—核销”链路分析定位原因，结合订单来源评估渠道效果并动态调整运营策略。</li>
-          </ol></div></article>
-          <article class="role"><time>2025.06—2025.08</time><div><h3>中科星图股份有限公司</h3><p class="meta">用户运营</p><ul class="keywords"><li>线索运营</li><li>用户分层</li><li>项目运营</li><li>低空经济</li></ul><ol class="detail-list">
-            <li><strong>线索运营：</strong>负责官网商机线索收集及用户体验优化，针对线索有效性不足建立有效线索度量标准；结合 DAU、页面点击率等行为数据及界面、话术反馈优化流程，通过官网累计对接潜在客户 140+ 名、识别有效需求 80+ 项，线索收集效率提升 20%。</li>
-            <li><strong>用户运营：</strong>梳理低空经济领域 250+ 名客户需求，根据用户所处需求阶段建立分层标准；策划并执行“产品体验官计划”，为有明确需求但尚未转化为销售商机的用户设计“社群＋直播＋试用咨询”运营机制，建立用户培育及商机转化路径。</li>
-            <li><strong>项目运营：</strong>负责 200+ 名内外部用户账号开通，协调客户、BD 及技术团队搭建 10+ 个客户演示环境，跟进 30+ 名客户试用及到期管理；参与公司级运营流程梳理，草拟 3 份战略合作协议，并协助推进 15 家合作方签约。</li>
-          </ol></div></article>
-          <article class="role"><time>2023.12—2024.05</time><div><h3>浙江网新恒天软件有限公司</h3><p class="meta">商务支持 · 招投标方向</p><ul class="keywords"><li>招投标</li><li>商务支持</li><li>跨部门协作</li><li>流程优化</li></ul><ol class="detail-list">
-            <li><strong>投标文件编制：</strong>设计“合规性＋机动性”双维度投标策略，协助业务部门完成 30+ 个十万/百万级电力及金融项目标书，负责需求响应、框架搭建、材料汇编、报价与商务文件把控并跟进技术文件，推动部门季度投标数提升 20%、中标率提升 35%。</li>
-            <li><strong>商务协作：</strong>跟进供应商注册、RFP、RFI 及电子投标全流程，优化“材料预审—协同提效”机制；完成跨部门协调 240+ 次、报名材料收集及标书盖章投递 20+ 次，形成商务运营闭环。</li>
-          </ol></div></article>
-          <article class="role"><time>2022.06—2022.09</time><div><h3>宁波市象山县发改局、团县委</h3><p class="meta">运营与产业调研</p><ul class="keywords"><li>产业调研</li><li>活动运营</li><li>内容传播</li><li>政务材料</li></ul><ol class="detail-list">
-            <li><strong>活动运营：</strong>全链路运营 4 场“怦然心动二十岁”青年交友活动，对接 10+ 家单位，吸引 240+ 人次；撰写新闻稿 8 篇，获县市级媒体报道 15+ 次，累计曝光量突破 100 万。</li>
-            <li><strong>大型活动策划：</strong>参与筹备中国（象山）开渔节，设计“渔光之城”集市方案，活动参与人次 1 万+、好评率 95%+；撰写会议材料及领导致辞，方案采纳率 75%。</li>
-            <li><strong>产业研究：</strong>参与撰写数字社会、战略性新兴产业等建设规划及未来规划 13 篇，设计青年工作条线例会方案 3 份，并审核青年工匠等申报材料 150+ 份。</li>
-          </ol></div></article>
-        </div>
-      </div>
-    </section>
+<section id="experience"><div class="shell"><div class="section-head"><p class="kicker">04 · Experience</p><h2>实习经历</h2></div><div class="timeline">
+<article class="role"><time>2025.12—2026.03</time><div><h3>京东世纪贸易有限公司</h3><p class="meta">采销助理</p><ul class="keywords"><li>渠道运营</li><li>经营增长</li><li>经营分析</li><li>AI 提效</li></ul><ul class="detail-list"><li><strong>渠道运营：</strong>负责搜索渠道流量运营，建立商品信息质量优化机制；基于曝光、点击与转化表现筛选核心商品池，持续跟踪商品排名异动并调整策略，推动搜索曝光提升 10%、转化率提升 6%；引入 AI 与自动化工具优化商品监测流程，运营效率提升 70%。</li><li><strong>经营增长：</strong>主导“顺手买”渠道运营，基于商品价差及关联购买行为建立选品、定价和活动提报流程；通过价格带、品类和商品组合测试优化方案，推动日订单量由 2,000+ 提升至 5,000+，实现渠道盈亏转正并打造 2 款渠道头部商品。</li><li><strong>经营分析：</strong>建立 GMV、订单量及转化率等核心指标监测与复盘机制，通过类目及渠道对比、转化漏斗分析定位问题，动态优化商品结构、会场布局及广告投放策略。</li></ul></div></article>
+<article class="role"><time>2025.08—2025.12</time><div><h3>美团 · 酒旅团购直播产品组</h3><p class="meta">渠道运营</p><ul class="keywords"><li>工具迭代</li><li>供给运营</li><li>SQL</li><li>渠道策略</li></ul><ul class="detail-list"><li><strong>工具迭代：</strong>基于内部选品与推品流程梳理运营痛点并推动产品化工具迭代；整合运营看板，编写 SQL 脚本实现货品信息一键查询，并运用 AI 沉淀可复用指令集，推动推品效率提升 50%。</li><li><strong>渠道增长：</strong>负责酒店团购产品供给对接及资源池建设，分析渠道用户画像，制定差异化推品策略，为高价值渠道匹配高客单价酒店产品、为价格敏感渠道配置通兑套餐，推动重点产品销量提升 30% 以上。</li><li><strong>经营诊断：</strong>使用 SQL 监测供给在线率、支付 GMV、支付转化率与核销率；针对指标异动，通过同城同商圈比较、“下单—支付—核销”链路及订单来源分析定位原因，动态调整运营策略。</li></ul></div></article>
+<article class="role"><time>2025.05—2025.08</time><div><h3>中科星图股份有限公司</h3><p class="meta">项目运营 · 上市国企</p><ul class="keywords"><li>需求分析</li><li>用户分层</li><li>项目协同</li><li>低空经济</li></ul><ul class="detail-list"><li><strong>需求分析：</strong>负责官网商机线索收集及客户体验优化，建立有效商机线索判定标准；结合用户活跃度、页面点击率等数据反馈优化流程，累计对接潜在客户 140+ 名、识别有效需求 80+ 项，推动线索收集效率提升 20%。</li><li><strong>客户培育：</strong>梳理低空经济领域 250+ 名客户需求并建立分层标准，筹备“产品体验官计划”，形成客户培育及商机转化路径。</li><li><strong>项目协同：</strong>协调客户、商务与技术团队搭建 8 个样板间，跟进 30+ 名客户试用；参与起草 3 份战略合作协议，协助推进 15 家合作方签约。</li></ul></div></article>
+<article class="role"><time>2023.12—2024.05</time><div><h3>浙江网新恒天软件有限公司</h3><p class="meta">商务支持 · 招投标</p><ul class="keywords"><li>招投标</li><li>商务材料</li><li>跨部门协作</li><li>流程优化</li></ul><ul class="detail-list"><li><strong>投标支持：</strong>设计“合规性＋机动性”双维度投标策略，协助完成 30+ 个十万/百万级电力与金融项目标书，负责需求响应、框架搭建、材料汇编、报价及商务文件把控，推动季度投标数提升 20%、中标率提升 35%。</li><li><strong>流程协同：</strong>跟进供应商注册、RFP、RFI 与电子投标全流程，优化“材料预审—协同提效”机制；完成跨部门协调 240+ 次、报名材料收集及盖章投递 20+ 次，形成商务运营闭环。</li></ul></div></article>
+<article class="role"><time>2022.06—2022.09</time><div><h3>宁波市象山县发改局</h3><p class="meta">产业研究与综合事务</p><ul class="keywords"><li>产业研究</li><li>项目设计</li><li>政务材料</li><li>内容传播</li></ul><ul class="detail-list"><li><strong>产业研究：</strong>参与撰写数字社会、战略性新兴产业、船舶行业等领域建设规划及研究材料 13 篇，设计青年工作条线例会方案 3 份，协助审核“青年工匠”“青年文明号”等项目申报材料 150+ 份。</li><li><strong>项目设计：</strong>参与筹备中国（象山）开渔节并策划“渔光之城”集市方案，撰写中青报视频会议方案及领导致辞；筹备 4 场青年交友活动，对接 10+ 家合作单位，累计覆盖 240+ 人次。</li><li><strong>内容传播：</strong>撰写新闻稿 8 篇，获县市级媒体报道 15+ 次，累计曝光量超过 100 万。</li></ul></div></article>
+</div></div></section>
 
-    <section id="project" aria-labelledby="project-title">
-      <div class="shell">
-        <div class="section-head"><p class="kicker">05 · Project</p><h2 id="project-title">项目经历</h2></div>
-        <article class="project">
-          <div><h3>智创乐居：基于物联网的智能社区建设新探索</h3><p><strong>角色：</strong>队长 · 2022—2023</p><p>围绕智慧社区与城市治理，探索运用物联网、传感器、数据库与自动化控制技术改善老旧小区停车、公共设施使用、物资配送和垃圾回收等场景。</p><ul class="keywords"><li>用户研究</li><li>产品策划</li><li>商业模式</li><li>项目统筹</li></ul></div>
-          <div><ol class="detail-list">
-            <li><strong>用户研究：</strong>独立对接社区负责人并组织调研，回收有效问卷 300+ 份，分析用户需求、使用场景及付费意愿，提炼 3 类高潜用户画像，形成 1 万余字实践调研报告。</li>
-            <li><strong>产品策划：</strong>分析同类智慧社区项目，梳理产品功能及商业模式，提炼 3 种盈利路径；组织完成 APP 原型、品牌视觉及商业数据图表设计。</li>
-            <li><strong>技术与落地：</strong>参与智能摄像识别、循迹避障垃圾搬运车、智能配送消杀机器人等方案设计，推动实物试制与社区试点，形成实用新型专利及软件著作权相关成果。</li>
-            <li><strong>项目统筹：</strong>负责进度管理、团队分工及省赛答辩，项目获省级金奖、答辩成绩位列前 10%，相关成果获中国日报网报道。</li>
-          </ol></div>
-        </article>
-      </div>
-    </section>
+<section id="projects"><div class="shell"><div class="section-head"><p class="kicker">05 · Research &amp; Projects</p><h2>研究与项目经历</h2></div><div class="project-grid">
+<article class="project-card featured"><div class="project-intro"><small>Research 01 · 2024.03—2026.06</small><h3>北京工商大学能源财税方向课题组</h3><p class="meta">科研助理</p><p>围绕能源转型、环境规制与财税政策开展量化研究，将政策梳理、数据分析、空间制图与学术写作结合。</p><ul class="keywords"><li>双重差分法</li><li>SCI/SSCI</li><li>ArcGIS</li><li>政策研究</li></ul></div><ul class="detail-list"><li><strong>论文发表：</strong>采用双重差分法评估新能源示范城市政策的企业价值效应，研究成果发表于 SCI/SSCI 期刊 Sustainability（第二作者）。</li><li><strong>环境财税研究：</strong>参与环保税、环境规制与碳排放研究，系统整理各地区排污费及环保税政策，使用 ArcGIS 绘制县级环保税率空间分布图。</li><li><strong>专题编撰：</strong>参与《中国宏观经济学》绿色转型专题初稿编撰，梳理经济增长、能源消费、碳排放及环境治理的演进脉络。</li></ul></article>
+<article class="project-card"><small>Project 02 · 2025.03—2025.06</small><h3>守护金陵文脉——AI 短剧创作</h3><p>以金陵文化遗产为内容核心，探索文化数字化、乡村振兴与文旅融合语境下的短剧表达，获“青振京郊”挑战杯省级二等奖。</p><ul class="keywords"><li>创意策划</li><li>AI 内容生产</li><li>文化传播</li></ul><ul class="detail-list"><li><strong>内容策划：</strong>参与确定核心概念、叙事结构与传播主题，完成脚本创作并将文化资源转化为可视化故事。</li><li><strong>成果表达：</strong>协同使用 AI 图像与视频工具完成内容生产，负责项目报告、答辩 PPT 与视觉表达。</li></ul></article>
+<article class="project-card"><small>Project 03 · 2023.01—2023.06</small><h3>智创乐居——基于物联网的智能社区建设新探索</h3><p><strong>负责人。</strong>围绕智慧社区与城市治理，探索物联网、传感器与自动化技术在老旧社区场景中的应用，项目获挑战杯省金奖并获中国日报网报道。</p><ul class="keywords"><li>用户研究</li><li>产品策划</li><li>项目统筹</li></ul><ul class="detail-list"><li><strong>调研与方案：</strong>对接社区并组织调研，围绕用户需求、应用场景和付费意愿提炼 3 类高潜用户画像；分析同类项目功能、建设方案与商业模式，形成 APP 原型、品牌视觉及商业分析图表。</li><li><strong>项目统筹：</strong>负责项目进度、团队分工及数据分析系统软件著作权申报，统筹完成参赛材料与答辩。</li></ul></article>
+</div></div></section>
 
-    <section id="campus" aria-labelledby="campus-title">
-      <div class="shell">
-        <div class="section-head"><p class="kicker">06 · Campus</p><h2 id="campus-title">校园经历</h2></div>
-        <div class="campus-grid">
-          <article class="campus-card"><h3>产业经济学学院专业党支部</h3><p class="meta">党支部书记 · 2024.09—至今</p><ol class="detail-list">
-            <li><strong>组织管理：</strong>负责党员发展、档案管理及组织生活规范化，统筹开展“三会一课”及支部会议 30+ 次，规范完成工作手册记录和材料归档，推进 12 名积极分子培养及 4 名预备党员转正。</li>
-            <li><strong>品牌建设：</strong>策划并落地“经世红链·产教赋能”品牌项目，联动其他党支部举办 4 场共建交流活动，累计覆盖 300+ 人次；推动支部入选研究生样板党支部重点建设项目并获评五星级研究生党支部。</li>
-          </ol></article>
-          <article class="campus-card"><h3>经济与工商管理学院青年志愿者协会</h3><p class="meta">主席 · 2022.08—2023.06</p><ol class="detail-list">
-            <li><strong>团队管理：</strong>带领 78 人团队，统筹 10+ 项志愿服务项目申报与落地，推动 2 个项目获团中央立项；协会获评校级“十佳青年志愿者协会”（5/34）。</li>
-            <li><strong>活动运营：</strong>联动区团委、纪念馆等校内外单位，组织 50+ 场志愿服务活动，打造“星火培训”“七彩假期”等 5 项品牌活动，累计参与人数超过 2,500 人次。</li>
-            <li><strong>内容运营：</strong>负责公众号选题策划、文案撰写及编辑排版，发布推文 20+ 篇、累计阅读量超过 2 万；设计海报、会牌及活动手册等宣传物料 20+ 份。</li>
-          </ol></article>
-        </div>
-      </div>
-    </section>
-  </main>
-  <footer><div class="shell footer-grid"><h2>保持好奇，持续行动。</h2><a href="https://github.com/cainiguai">在 GitHub 找到我 ↗</a></div></footer>
-</body>
-</html>
+<section id="leadership"><div class="shell"><div class="section-head"><p class="kicker">06 · Leadership</p><h2>校园与组织经历</h2></div><div class="leadership-grid">
+<article class="leadership-card"><h3>北京工商大学产业经济学学院专业党支部</h3><p class="meta">党支部书记 · 2024.09—2027.06</p><ul class="keywords"><li>组织管理</li><li>项目管理</li><li>跨支部协同</li></ul><ul class="detail-list"><li><strong>组织管理：</strong>负责党员发展、档案管理及组织生活规范化，统筹开展“三会一课”30+ 次，推进 12 名积极分子及 3 名党员培养。</li><li><strong>项目管理：</strong>策划并落地“经世红链·产教赋能”品牌项目，组织支部常态化开展党日活动，统筹活动策划、组织实施与复盘总结。</li><li><strong>协同建设：</strong>联动其他支部举办 4 场共建交流活动，累计覆盖 300+ 人次；推动支部入选研究生样板党支部重点建设项目并获评五星级研究生党支部。</li></ul></article>
+<article class="leadership-card"><h3>黑龙江大学经济与工商管理学院青年志愿者协会</h3><p class="meta">主席 · 2022.08—2023.06</p><ul class="keywords"><li>团队管理</li><li>活动运营</li><li>内容传播</li></ul><ul class="detail-list"><li><strong>团队管理：</strong>带领 78 人团队，统筹 10+ 项志愿服务项目申报与落地，推动 2 个项目获团中央立项；协会获评校级“十佳青年志愿者协会”（5/34）。</li><li><strong>活动运营：</strong>联动区团委、纪念馆等校内外单位，组织 50+ 场志愿服务活动，打造“星火培训”“七彩假期”等 5 项品牌活动，累计参与 2,500+ 人次。</li><li><strong>内容传播：</strong>负责公众号选题、文案与编辑排版，发布推文 20+ 篇、累计阅读 2 万+；设计海报、会牌和活动手册等宣传物料 20+ 份。</li></ul></article>
+</div></div></section>
+</main>
+<footer><div class="shell footer-grid"><h2>期待与新的问题相遇。</h2><div class="footer-links"><a href="mailto:15990274205@163.com">15990274205@163.com</a><a href="https://github.com/cainiguai">GitHub ↗</a></div></div></footer>
+</body></html>
