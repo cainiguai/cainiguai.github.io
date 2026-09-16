@@ -109,11 +109,11 @@ class UniversalProfilePageTests(unittest.TestCase):
             ["top", "education", "awards", "skills", "experience", "projects", "leadership"],
         )
 
-    def test_selected_projects_cover_research_ai_culture_and_smart_community(self):
+    def test_project_portfolio_covers_research_ai_business_and_early_practice(self):
         projects = first(self.root, tag="section", node_id="projects")
         self.assertIsNotNone(projects)
         cards = nodes(projects, tag="article", class_name="project-card")
-        self.assertEqual(len(cards), 3)
+        self.assertEqual(len(cards), 7)
         project_text = projects.text
         featured = first(projects, tag="article", class_name="featured")
         self.assertIn("能源财税方向课题组", featured.text)
@@ -125,9 +125,32 @@ class UniversalProfilePageTests(unittest.TestCase):
         self.assertIn("SCI/SSCI", project_text)
         self.assertIn("ArcGIS", project_text)
         self.assertIn("《中国宏观经济学》", project_text)
+        self.assertIn("AI 个人简历网站创作实践", project_text)
+        self.assertIn("2026.08—2026.09", project_text)
+        self.assertIn("简约展示版", project_text)
+        self.assertIn("3D 交互版", project_text)
+        self.assertIn("言出法随——AI-OPC 超级工作流", project_text)
+        self.assertIn("2026.02—2026.06", project_text)
         self.assertIn("守护金陵文脉", project_text)
-        self.assertIn("智创乐居", project_text)
-        self.assertNotIn("红船精神", project_text)
+        self.assertIn("基于物联网的智能社区建设新探索", project_text)
+        self.assertIn("2022.09—2023.05", project_text)
+        self.assertIn("有效问卷 300+ 份", project_text)
+        self.assertIn("省赛答辩成绩位列前 10%", project_text)
+        self.assertIn("向北开放背景下黑龙江自贸区发展路径研究", project_text)
+        self.assertIn("5 个沿边自贸区", project_text)
+        self.assertIn("探寻红船精神，担当时代使命", project_text)
+
+        expected_links = {
+            "https://www.mdpi.com/2071-1050/17/19/8603",
+            "https://cainiguai.github.io/",
+            "https://app-e1fdo6486jgh.miaoda.online",
+        }
+        project_links = {
+            link.attrs.get("href")
+            for link in nodes(projects, tag="a")
+            if link.attrs.get("href") in expected_links
+        }
+        self.assertEqual(project_links, expected_links)
 
     def test_latest_resume_updates_education_experience_and_capabilities(self):
         education = first(self.root, tag="section", node_id="education")
