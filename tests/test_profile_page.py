@@ -237,6 +237,12 @@ class UniversalProfilePageTests(unittest.TestCase):
         self.assertIn(".summary{grid-template-columns:repeat(2,1fr)", self.css)
         self.assertIn(".summary p{font-size:12px}", self.css)
 
+    def test_early_practice_card_has_a_visible_surface_and_frame(self):
+        self.assertIn(
+            ".project-card.compact{background:var(--paper);border-color:#bfc9c9}",
+            self.css,
+        )
+
     def test_static_professional_theme_has_no_ocean_animation(self):
         self.assertEqual(nodes(self.root, class_name="ocean-scene"), [])
         self.assertNotIn("@keyframes", self.css)
